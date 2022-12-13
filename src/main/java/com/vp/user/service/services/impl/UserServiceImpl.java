@@ -1,6 +1,7 @@
 package com.vp.user.service.services.impl;
 
 import com.vp.user.service.entities.User;
+import com.vp.user.service.exception.ResourceNotFoundException;
 import com.vp.user.service.repositories.UserRepository;
 import com.vp.user.service.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(Long UserId) {
-        return userRepository.findById(UserId).orElseThrow();
+        return userRepository.findById(UserId).orElseThrow(()-> new ResourceNotFoundException());
     }
 }
